@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
 # Load model với cache (cho phép output mutation)
-@st.cache_resource(allow_output_mutation=True)
+@st.cache_resource
 def load_model():
     return SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -16,8 +16,8 @@ def load_data():
 
 # Tính embeddings cho danh sách mô tả sản phẩm, bỏ qua việc hash đối số _model
 @st.cache_data
-def compute_embeddings(descriptions, _model):
-    return _model.encode(descriptions)
+def compute_embeddings(descriptions):
+    return model.encode(descriptions)
 
 # Load model và dữ liệu
 model = load_model()
@@ -25,7 +25,7 @@ df = load_data()
 descriptions = df["Description"].tolist()
 
 # Tính embeddings cho toàn bộ mô tả sản phẩm
-embeddings = compute_embeddings(descriptions, model)
+embeddings = compute_embeddings(descriptions)
 
 st.title("Chat bot")
 user_input = st.text_input("Nhập từ khóa sản phẩm cần tìm:")
