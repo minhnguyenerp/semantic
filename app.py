@@ -24,6 +24,9 @@ model = load_model()
 df = load_data()
 descriptions = df["Description"].tolist()
 
+for desc in descriptions:
+    st.markdown(f"- {desc}")
+
 # Tính embeddings cho toàn bộ mô tả sản phẩm
 embeddings = compute_embeddings(descriptions)
 
