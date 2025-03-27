@@ -27,7 +27,7 @@ descriptions = df["Description"].tolist()
 # Tính embeddings cho toàn bộ mô tả sản phẩm
 embeddings = compute_embeddings(descriptions, model)
 
-st.title("🤖 Chatbot Tìm Kiếm Sản Phẩm - Mecsu.vn (Vector Search - Top 10 Grid)")
+st.title("Chat bot")
 user_input = st.text_input("Nhập từ khóa sản phẩm cần tìm:")
 
 if user_input:
